@@ -1,0 +1,24 @@
+#Install docker on linux
+1. Create file /etc/yum.repos.d/docker.repo with below contents
+    [dockerrepo]
+    name=Docker Repository
+    baseurl=https://yum.dockerproject.org/repo/main/centos/7/
+    enabled=1
+    gpgcheck=1
+    gpgkey=https://yum.dockerproject.org/gpg
+
+
+2. sudo yum install docker-engine -y
+
+3. sudo service docker start
+
+# Install nginx
+1. Create local directories to host nginx conf files and contents
+   sudo mkdir -p /var/www
+   sudo mkdir -p /var/nginx/conf
+   NGINX_HOME = /var/www
+   NGINX_CONF = /var/nginx/conf
+
+2. Install nginx
+    sudo docker run --name mynginx2 -v $NGINX_HOME:/usr/share/nginx/html -v $NGINX_CONF:/etc/nginx/conf -p 8080:80 -d nginx
+

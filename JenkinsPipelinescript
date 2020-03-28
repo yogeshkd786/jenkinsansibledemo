@@ -1,0 +1,35 @@
+pipeline {
+    agent {
+        node {
+            label 'jenkinsslave2'
+        }
+    }
+    
+    stages {       
+        stage('Prepare') {
+            steps {
+                checkout([$class: 'GitSCM',
+                branches: [[name: '*/master']],
+                doGenerateSubmoduleConfigurations: false,
+                submoduleCfg: [],
+                userRemoteConfigs: [[
+                    url: 'https://github.com/yogeshkd786/jenkinsansibledemo.git']]
+                ])
+            }
+        }
+        stage ('Build') {
+            steps {
+                
+                sh'''
+                    # Build the image
+                    whoami
+                    pwd
+                    
+                    ansible-playbook deploy_nginx_conf_docker.yaml
+                '''
+            }
+        }
+        
+        
+    }
+}

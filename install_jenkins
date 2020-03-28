@@ -1,0 +1,11 @@
+1. Install java using rpm downloaded 
+2. Download jenkins war file
+3. Run Jenkins in background
+	nohup java -jar /tmp/jenkins.war --httpPort=8080 &
+or run docker container for jenkins
+crete directory /opt/jenkins_home
+Set JENKINS_HOME=/opt/jenkins_home
+sudo docker run -id --name jenkins -p 80:8080 -p 50000:50000 -v $JENKINS_HOME:/var/jenkins_home jenkins:2.3-alpine
+4. Install Jenkins plugins
+5. Configured jenkins slave 
+5. Configure Pipeline job using the Jenkins Pipleline script
