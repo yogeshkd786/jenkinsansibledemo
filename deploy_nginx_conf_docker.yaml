@@ -1,0 +1,14 @@
+---
+- name: Deploy nginx conf files updates
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+  - name: Check if nginx is running
+    shell: docker exec -t mynginx2 /etc/init.d/nginx status
+    register: result
+    ignore_errors: True
+
+  - name: Output result if succeeded
+    shell: docker cp ./nginx.conf mynginx2:/etc/nginx/nginx.conf
+    when: result is succeeded
