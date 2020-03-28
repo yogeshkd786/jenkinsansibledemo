@@ -1,0 +1,14 @@
+---
+- name: Deploy nginx conf files updates
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+  - name: ensure nginx is at the latest version
+    shell: amazon-linux-extras install nginx1.12
+    become: yes
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
+    become: yes

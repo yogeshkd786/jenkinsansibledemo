@@ -22,3 +22,5 @@
 2. Install nginx
     sudo docker run --name mynginx2 -v $NGINX_HOME:/usr/share/nginx/html -v $NGINX_CONF:/etc/nginx/conf -p 8080:80 -d nginx
 
+or using ansible playbooy install nginx. Refer to Install_nginx_ansible.yaml 
+
